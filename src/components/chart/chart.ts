@@ -1171,9 +1171,22 @@ export default class ChartController {
         continue
       }
 
-      this.activeRenderer.sources[identifier].high = Math.max(this.activeRenderer.sources[identifier].high, +trade.price)
-      this.activeRenderer.sources[identifier].low = Math.min(this.activeRenderer.sources[identifier].low, +trade.price)
       this.activeRenderer.sources[identifier].close = +trade.price
+
+      if (this.activeRenderer.sources[identifier].open === null) {
+        this.activeRenderer.sources[identifier].open = this.activeRenderer.sources[identifier].high = this.activeRenderer.sources[
+          identifier
+        ].low = this.activeRenderer.sources[identifier].close
+      } else {
+        this.activeRenderer.sources[identifier].high = Math.max(
+          this.activeRenderer.sources[identifier].high,
+          this.activeRenderer.sources[identifier].close
+        )
+        this.activeRenderer.sources[identifier].low = Math.min(
+          this.activeRenderer.sources[identifier].low,
+          this.activeRenderer.sources[identifier].close
+        )
+      }
 
       this.activeRenderer.sources[identifier]['c' + trade.side] += trade.count
       this.activeRenderer.sources[identifier]['v' + trade.side] += amount
@@ -1971,11 +1984,10 @@ export default class ChartController {
    * @param {Bar} bar
    */
   resetBar(bar: Bar) {
-    if (bar.close !== null) {
-      bar.open = bar.close
-      bar.high = bar.close
-      bar.low = bar.close
-    }
+    bar.open = null
+    bar.high = null
+    bar.low = null
+
     bar.vbuy = 0
     bar.vsell = 0
     bar.cbuy = 0
