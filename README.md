@@ -1,7 +1,7 @@
 
 # Migma - exchange aggregator [![Build Status](https://travis-ci.org/Tucsky/aggr.svg?branch=master)](https://travis-ci.org/Tucsky/aggr)
 
-  - forked from SignificantTrades -
+  - forked from SignificantTrades
 
 Cryptocurrency market trades aggregator.<br>
 
@@ -41,7 +41,7 @@ For development, just as any vuejs project
 1. Clone the repo
 
 ```bash
-git clone https://github.com/Tucsky/aggr
+git clone https://github.com/quadragen/migma
 ```
 
 2. Install dependencies
@@ -73,14 +73,14 @@ and access the dist/index.html directly in the browser later without having to r
 build your own aggr client docker:
 
 ```bash
-git clone https://github.com/Tucsky/aggr
-cd aggr
+git clone https://github.com/quadragen/migma
+cd migma
 docker build -t aggr-chart .
 ```
 you need to set the API_URL as environment variable for your own installation, if you want to use that.
 
 ## Configuration
-SignificantTrades is now using Vue Cli which allows you to configure the client using .env file.
+Migma is now using Vue Cli which allows you to configure the client using .env file.
 
 Create a <code>.env.local</code> or <code>.env.development</code> or <code>.env.production</code> (.env.local if you don't know) file inside root folder.
 
